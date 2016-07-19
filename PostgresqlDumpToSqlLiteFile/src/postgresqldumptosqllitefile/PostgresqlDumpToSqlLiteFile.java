@@ -5,6 +5,8 @@
  */
 package postgresqldumptosqllitefile;
 
+import java.util.Scanner;
+
 /**
  *
  * @author ikress
@@ -15,6 +17,9 @@ public class PostgresqlDumpToSqlLiteFile {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        System.out.println("Hello World!");
+        Scanner in = new Scanner(System.in);
+        in.nextInt();
         // TODO code application logic here
     }
     
