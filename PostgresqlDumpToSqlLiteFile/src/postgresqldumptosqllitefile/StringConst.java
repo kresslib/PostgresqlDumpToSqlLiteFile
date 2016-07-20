@@ -11,8 +11,9 @@ package postgresqldumptosqllitefile;
  */
 public class StringConst {
     public static final String ERROR_OF_PARAM_COUNT = "Error of parameter count";
-    public static final String ERROR_OF_SYNTAX_IN_PARAMETER_0 = "Error of syntax in parameter 0";
-    public static final String ERROR_OF_SYNTAX_IN_PARAMETER_1 = "Error of syntax in parameter 1";
-    public static final String ERROR_OF_SYNTAX_IN_PARAMETER_2 = "Error of syntax in parameter 2";
-    public static final String ERROR_OF_SYNTAX_IN_PARAMETER_3 = "Error of syntax in parameter 3";
+    public static final String ERROR_OF_SYNTAX_IN_PARAMETER_0_HOST = "Error of syntax in parameter 0 host";
+    public static final String ERROR_OF_SYNTAX_IN_PARAMETER_1_PORT = "Error of syntax in parameter 1 port";
+    public static final String ERROR_OF_SYNTAX_IN_PARAMETER_2_DB = "Error of syntax in parameter 2 database name";
+    public static final String ERROR_OF_SYNTAX_IN_PARAMETER_3_USER = "Error of syntax in parameter 3 user name";
+
 }
