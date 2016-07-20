@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 public class ValidateInParam {
 
     public static String ValidateFormal(String[] args) {
-        if (args.length < 5) {
+        if (args.length < 6) {
             return StringConst.ERROR_OF_PARAM_COUNT;
         }
         if (!isIPAddress(args[0]) && !isLocalHostName(args[0])) {
@@ -29,6 +29,9 @@ public class ValidateInParam {
         }
         if (!isUserName(args[3])) {
             return StringConst.ERROR_OF_SYNTAX_IN_PARAMETER_3_USER;
+        }
+        if (!isFilePath(args[5])) {
+            return StringConst.ERROR_OF_SYNTAX_IN_PARAMETER_5_FILE_PATH_FORMAT;
         }
         return null;
     }
@@ -62,6 +65,13 @@ public class ValidateInParam {
 
     public static boolean isUserName(String text) {
         Pattern p = Pattern.compile("^[a-zA-Z_][a-zA-Z_0-9]+$");
+        Matcher m = p.matcher(text);
+        return m.matches();
+    }
+
+    public static boolean isFilePath(String text) {
+        String regex = "[a-zA-Z]:(\\\\[a-zA-Z0-9_\\s.-]+)*\\\\[a-zA-Z0-9_\\s.-]+\\.[a-zA-Z0-9_.-]+";
+        Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(text);
         return m.matches();
     }

@@ -16,5 +16,6 @@ public class StringConst {
     public static final String ERROR_OF_SYNTAX_IN_PARAMETER_2_DB = "Error of syntax in parameter 2 database name";
     public static final String ERROR_OF_SYNTAX_IN_PARAMETER_3_USER = "Error of syntax in parameter 3 user name";
     //public static final String ERROR_OF_SYNTAX_IN_PARAMETER_4_NULL_PASSWORD = "Error of syntax in parameter 4 null password";
+    public static final String ERROR_OF_SYNTAX_IN_PARAMETER_5_FILE_PATH_FORMAT = "Error of syntax in parameter 5 file path format";
 
 }

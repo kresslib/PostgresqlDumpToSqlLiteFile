@@ -51,33 +51,41 @@ public class ValidateInParamTest {
         result = ValidateInParam.ValidateFormal(args3);
         assertTrue(result == StringConst.ERROR_OF_PARAM_COUNT);
 
-        String[] args4 = new String[]{"192.168.1.1", "1234", "test", "test", "test"};
+        String[] args4 = new String[]{"192.168.1.1", "1234", "test", "test", "test", "C:\\test.ttx"};
         result = ValidateInParam.ValidateFormal(args4);
         assertTrue(result == null);
 
-        String[] args5 = new String[]{"1test", "test", "test", "test", "test"};
+        String[] args5 = new String[]{"1test", "test", "test", "test", "test", "test"};
         result = ValidateInParam.ValidateFormal(args5);
         assertTrue(result == StringConst.ERROR_OF_SYNTAX_IN_PARAMETER_0_HOST);
 
-        String[] args6 = new String[]{"_test", "1234", "test", "test", "test"};
-        result = ValidateInParam.ValidateFormal(args6);
-        assertTrue(result == null);
-
-        String[] args7 = new String[]{" _test", "test", "test", "test", "test"};
+        String[] args7 = new String[]{" _test", "test", "test", "test", "test", "test"};
         result = ValidateInParam.ValidateFormal(args7);
-        assertFalse(result == null);
+        assertTrue(result == StringConst.ERROR_OF_SYNTAX_IN_PARAMETER_0_HOST);
 
-        String[] args8 = new String[]{"192.168.1.1", "s1234", "test", "test", "test"};
+        String[] args8 = new String[]{"192.168.1.1", "s1234", "test", "test", "test", "test"};
         result = ValidateInParam.ValidateFormal(args8);
         assertTrue(result == StringConst.ERROR_OF_SYNTAX_IN_PARAMETER_1_PORT);
 
-        String[] args9 = new String[]{"192.168.1.1", "1234", "t est", "test", "test"};
+        String[] args9 = new String[]{"192.168.1.1", "1234", "t est", "test", "test", "test"};
         result = ValidateInParam.ValidateFormal(args9);
         assertTrue(result == StringConst.ERROR_OF_SYNTAX_IN_PARAMETER_2_DB);
 
-        String[] args10 = new String[]{"192.168.1.1", "1234", "test", "1t est", "test"};
+        String[] args10 = new String[]{"192.168.1.1", "1234", "test", "1t est", "test", "test"};
         result = ValidateInParam.ValidateFormal(args10);
         assertTrue(result == StringConst.ERROR_OF_SYNTAX_IN_PARAMETER_3_USER);
+
+        String[] args11 = new String[]{"192.168.1.1", "1234", "test", "test", "test", "test"};
+        result = ValidateInParam.ValidateFormal(args11);
+        assertTrue(result == StringConst.ERROR_OF_SYNTAX_IN_PARAMETER_5_FILE_PATH_FORMAT);
+
+        String[] args12 = new String[]{"_test", "1234", "test", "test", "test", "C:\\log1.dat"};
+        result = ValidateInParam.ValidateFormal(args12);
+        assertTrue(result == null);
+
+        String[] args6 = new String[]{"_test", "1234", "test", "test", "test", "C:\\test\\data\\log1.dat"};
+        result = ValidateInParam.ValidateFormal(args6);
+        assertTrue(result == null);
     }
 
     /**
@@ -214,6 +222,43 @@ public class ValidateInParamTest {
         text = "_0fgh";
         expResult = true;
         result = ValidateInParam.isUserName(text);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of isFilePath method, of class ValidateInParam.
+     */
+    @Test
+    public void testIsFilePath() {
+        System.out.println("isFilePath");
+        String text = "1dfgh";
+        boolean expResult = false;
+        boolean result = ValidateInParam.isFilePath(text);
+        assertEquals(expResult, result);
+
+        text = "d fgh";
+        expResult = false;
+        result = ValidateInParam.isFilePath(text);
+        assertEquals(expResult, result);
+
+        text = "C:\\dfgh";
+        expResult = false;
+        result = ValidateInParam.isFilePath(text);
+        assertEquals(expResult, result);
+
+        text = "C:\\dfgh.1";
+        expResult = true;
+        result = ValidateInParam.isFilePath(text);
+        assertEquals(expResult, result);
+
+        text = "C:\\data\\dfgh.1";
+        expResult = true;
+        result = ValidateInParam.isFilePath(text);
+        assertEquals(expResult, result);
+
+        text = "C:\\data\\df  gh.1";
+        expResult = true;
+        result = ValidateInParam.isFilePath(text);
         assertEquals(expResult, result);
     }
 
