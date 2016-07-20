@@ -24,6 +24,12 @@ public class ValidateInParam {
         if (!isPort(args[1])) {
             return StringConst.ERROR_OF_SYNTAX_IN_PARAMETER_1_PORT;
         }
+        if (!isDBName(args[2])) {
+            return StringConst.ERROR_OF_SYNTAX_IN_PARAMETER_2_DB;
+        }
+        if (!isUserName(args[3])) {
+            return StringConst.ERROR_OF_SYNTAX_IN_PARAMETER_3_USER;
+        }
         return null;
     }
 
@@ -36,7 +42,7 @@ public class ValidateInParam {
     }
 
     public static boolean isLocalHostName(String text) {
-        Pattern p = Pattern.compile("^[a-zA-Z_]+$");
+        Pattern p = Pattern.compile("^[a-zA-Z_][a-zA-Z0-9_]+$");
         Matcher m = p.matcher(text);
         return m.matches();
     }
@@ -47,5 +53,16 @@ public class ValidateInParam {
         Matcher m = p.matcher(text);
         return m.matches();
     }
-}
 
+    public static boolean isDBName(String text) {
+        Pattern p = Pattern.compile("^[a-zA-Z_][a-zA-Z_0-9]+$");
+        Matcher m = p.matcher(text);
+        return m.matches();
+    }
+
+    public static boolean isUserName(String text) {
+        Pattern p = Pattern.compile("^[a-zA-Z_][a-zA-Z_0-9]+$");
+        Matcher m = p.matcher(text);
+        return m.matches();
+    }
+}

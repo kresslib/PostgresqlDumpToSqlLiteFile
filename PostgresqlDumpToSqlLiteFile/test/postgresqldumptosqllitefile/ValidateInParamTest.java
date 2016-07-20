@@ -66,11 +66,18 @@ public class ValidateInParamTest {
         String[] args7 = new String[]{" _test", "test", "test", "test", "test"};
         result = ValidateInParam.ValidateFormal(args7);
         assertFalse(result == null);
-        
+
         String[] args8 = new String[]{"192.168.1.1", "s1234", "test", "test", "test"};
         result = ValidateInParam.ValidateFormal(args8);
         assertTrue(result == StringConst.ERROR_OF_SYNTAX_IN_PARAMETER_1_PORT);
-        
+
+        String[] args9 = new String[]{"192.168.1.1", "1234", "t est", "test", "test"};
+        result = ValidateInParam.ValidateFormal(args9);
+        assertTrue(result == StringConst.ERROR_OF_SYNTAX_IN_PARAMETER_2_DB);
+
+        String[] args10 = new String[]{"192.168.1.1", "1234", "test", "1t est", "test"};
+        result = ValidateInParam.ValidateFormal(args10);
+        assertTrue(result == StringConst.ERROR_OF_SYNTAX_IN_PARAMETER_3_USER);
     }
 
     /**
@@ -118,6 +125,11 @@ public class ValidateInParamTest {
         expResult = true;
         result = ValidateInParam.isLocalHostName(text);
         assertEquals(expResult, result);
+
+        text = "_0fgh";
+        expResult = true;
+        result = ValidateInParam.isLocalHostName(text);
+        assertEquals(expResult, result);
     }
 
     /**
@@ -137,6 +149,71 @@ public class ValidateInParamTest {
         text = "61 22";
         expResult = false;
         result = ValidateInParam.isPort(text);
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of isDBName method, of class ValidateInParam.
+     */
+    @Test
+    public void testIsDBName() {
+        System.out.println("isDBName");
+        String text = "1dfgh";
+        boolean expResult = false;
+        boolean result = ValidateInParam.isDBName(text);
+        assertEquals(expResult, result);
+
+        text = "d fgh";
+        expResult = false;
+        result = ValidateInParam.isDBName(text);
+        assertEquals(expResult, result);
+
+        text = "dfgh";
+        expResult = true;
+        result = ValidateInParam.isDBName(text);
+        assertEquals(expResult, result);
+
+        text = "_dfgh";
+        expResult = true;
+        result = ValidateInParam.isDBName(text);
+        assertEquals(expResult, result);
+
+        text = "_0fgh";
+        expResult = true;
+        result = ValidateInParam.isDBName(text);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of isUserName method, of class ValidateInParam.
+     */
+    @Test
+    public void testIsUserName() {
+        System.out.println("isUserName");
+        String text = "1dfgh";
+        boolean expResult = false;
+        boolean result = ValidateInParam.isUserName(text);
+        assertEquals(expResult, result);
+
+        text = "d fgh";
+        expResult = false;
+        result = ValidateInParam.isUserName(text);
+        assertEquals(expResult, result);
+
+        text = "dfgh";
+        expResult = true;
+        result = ValidateInParam.isUserName(text);
+        assertEquals(expResult, result);
+
+        text = "_dfgh";
+        expResult = true;
+        result = ValidateInParam.isUserName(text);
+        assertEquals(expResult, result);
+
+        text = "_0fgh";
+        expResult = true;
+        result = ValidateInParam.isUserName(text);
         assertEquals(expResult, result);
     }
 
