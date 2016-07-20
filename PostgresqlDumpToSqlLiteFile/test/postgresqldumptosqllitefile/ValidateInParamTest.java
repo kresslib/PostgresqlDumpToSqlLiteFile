@@ -262,4 +262,23 @@ public class ValidateInParamTest {
         assertEquals(expResult, result);
     }
 
+    /**
+     * Test of hostPing method, of class ValidateInParam.
+     */
+    @Test
+    public void testHostPing() {
+        
+        System.out.println("hostPing");
+        String host = "localhost";
+        boolean expResult = true;
+        boolean result = ValidateInParam.hostPing(host);
+        
+        assertEquals(expResult, result);
+        host = "localhost2";
+        expResult = false;
+        result = ValidateInParam.hostPing(host);
+        assertEquals(expResult, result);
+
+    }
+
 }
