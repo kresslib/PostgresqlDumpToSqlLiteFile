@@ -17,10 +17,14 @@ public class PostgresqlDumpToSqlLiteFile {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+
+        String validate_formal_result = ValidateInParam.ValidateFormal(args);
+        if (validate_formal_result != null) {
+            System.out.println(validate_formal_result);
+        }
         Scanner in = new Scanner(System.in);
         in.nextInt();
         // TODO code application logic here
     }
-    
+
 }
